@@ -1,4 +1,4 @@
-# PushIT E-Commerce
+# PushIT E-Commerce (Still Under Build)
 
 A modern, full-stack e-commerce application built with the **MERN stack** (MongoDB, Express, React, Node.js). This project features a responsive UI, secure authentication, product management, and image handling.
 
