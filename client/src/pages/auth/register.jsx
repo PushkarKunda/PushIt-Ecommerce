@@ -5,6 +5,9 @@ import { registerFormControls } from "../../config";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../../store/auth-slice";
 import { useNavigate } from "react-router-dom";
+import {toast} from "sonner";
+ 
+
 const initialState = {
     userName: "",
     email: "",
@@ -15,12 +18,19 @@ function AuthRegister() {
 
     const [formData, setFormData] = useState(initialState);
     const dispatch = useDispatch();
-    /*const navigate = useNavigate();*/
+    const navigate = useNavigate();
+    
 
     function onSubmit(event){
         event.preventDefault();
         dispatch(registerUser(formData)).then((data) => {
-            console.log(data);
+            if(data?.payload.success){ 
+                toast(data?.payload?.message);
+                navigate("/auth/login");
+            }
+            else{
+                toast.error(data?.payload?.message);
+            }
         })
     }
     console.log(formData);

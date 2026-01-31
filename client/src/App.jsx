@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import './App.css'
 import AuthLayout from "@/components/auth/layout.jsx";
 import { Routes, Route } from "react-router-dom";
@@ -19,14 +21,20 @@ import ShoppingCheckout from "@/pages/shopping/checkout.jsx";
 import ShoppingAccount from "@/pages/shopping/account.jsx";
 import CheckAuth from './components/common/checkAuth';
 import UnauthPage from "@/pages/unauthPage/index.jsx";
+import { checkAuth } from './store/auth-slice';
 
 
 function App() {
-  const isAuthenticated = false;
-  const user = {
-    name: "Pushkar",
-    role: "admin"
-  };
+  const {user, isAuthenticated, isLoading} = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(checkAuth());
+  }, [dispatch]);
+
+  if(isLoading){
+    return <div>Loading...</div>
+  }
 
   return (
     <div className="header-container">
