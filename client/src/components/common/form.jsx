@@ -1,6 +1,10 @@
-import { registerFormControls } from "@/config";
+import { Input} from "../ui/input";
+import { Label } from "../ui/label";
+import { Textarea } from "../ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
+import { Button } from "../ui/button";
 
-function CommonForm(formControl, formData, setFormData, onSubmit, buttonText) {
+function CommonForm({formControl, formData, setFormData, onSubmit, buttonText}) {
 
     function renderInputByComponentType(controlItem) {
         let element = null;
@@ -9,7 +13,8 @@ function CommonForm(formControl, formData, setFormData, onSubmit, buttonText) {
 
         switch (controlItem.componentType) {
             case "input":
-                element = (<Input
+                element = (
+                <Input
                     name={controlItem.name}
                     type={controlItem.type}
                     placeholder={controlItem.placeholder}
@@ -56,7 +61,8 @@ function CommonForm(formControl, formData, setFormData, onSubmit, buttonText) {
                 );
                 break;
             default:
-                element = (<Input
+                element = (
+                <Input
                     name={controlItem.name}
                     type={controlItem.type}
                     placeholder={controlItem.placeholder}
@@ -69,14 +75,16 @@ function CommonForm(formControl, formData, setFormData, onSubmit, buttonText) {
                 />
                 );
                 break;
+            
         }
+        return element;
     }
     return (
         <form onSubmit={onSubmit}>
             <div className="flex flex-col gap-3">
                 {
-                    registerFormControls.map(controlItem => <div className="grid w-full gap-1.5" key={controlItem.name}>
-                        <label className="mb-1">{controlItem.label}</label>
+                    formControl.map(controlItem => <div className="grid w-full gap-1.5" key={controlItem.name}>
+                        <Label className="mb-1">{controlItem.label}</Label>
                         {
                             renderInputByComponentType(controlItem)
                         }
