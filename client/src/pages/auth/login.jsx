@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { useState } from "react"
 import CommonForm from "../../components/common/form";
-import { loginFormControls } from "../../config";
+import { loginFormControls } from "../../config/index.jsx";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../../store/auth-slice";
@@ -20,14 +20,14 @@ function AuthLogin() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    function onSubmit(event){
+    function onSubmit(event) {
         event.preventDefault();
         dispatch(loginUser(formData)).then((data) => {
-            if(data?.payload?.success){
+            if (data?.payload?.success) {
                 toast(data?.payload?.message);
                 navigate("/shop/home");
             }
-            else{
+            else {
                 toast.error(data?.payload?.message || "Login failed");
             }
         })

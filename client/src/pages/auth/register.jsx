@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom"
 import { useState } from "react"
 import CommonForm from "../../components/common/form";
-import { registerFormControls } from "../../config";
+import { registerFormControls } from "../../config/index.jsx";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../../store/auth-slice";
 import { useNavigate } from "react-router-dom";
-import {toast} from "sonner";
- 
+import { toast } from "sonner";
+
 
 const initialState = {
     userName: "",
@@ -19,16 +19,16 @@ function AuthRegister() {
     const [formData, setFormData] = useState(initialState);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    
 
-    function onSubmit(event){
+
+    function onSubmit(event) {
         event.preventDefault();
         dispatch(registerUser(formData)).then((data) => {
-            if(data?.payload.success){ 
+            if (data?.payload.success) {
                 toast(data?.payload?.message);
                 navigate("/auth/login");
             }
-            else{
+            else {
                 toast.error(data?.payload?.message);
             }
         })
