@@ -22,7 +22,7 @@ import ShoppingAccount from "@/pages/shopping/account.jsx";
 import CheckAuth from './components/common/checkAuth';
 import UnauthPage from "@/pages/unauthPage/index.jsx";
 import { checkAuth } from './store/auth-slice';
-
+import { Skeleton } from "@/components/ui/skeleton";
 
 function App() {
   const {user, isAuthenticated, isLoading} = useSelector((state) => state.auth);
@@ -33,7 +33,7 @@ function App() {
   }, [dispatch]);
 
   if(isLoading){
-    return <div>Loading...</div>
+    return <Skeleton className="w-[800] bg-black h-[600]"></Skeleton>
   }
 
   return (

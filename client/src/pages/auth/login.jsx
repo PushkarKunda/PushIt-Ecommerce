@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { loginUser } from "../../store/auth-slice";
 import { toast } from "sonner";
 
+import './styling/login.css';
+
 const initialState = {
     email: "",
     password: ""
@@ -34,7 +36,7 @@ function AuthLogin() {
     }
 
     return (
-        <div className="mx-auto w-full max-w-md space-y-6">
+        <div className="bg-container mx-auto w-full max-w-md space-y-6">
             <div className="text-center">
 
                 <h1 className="text-2xl font-bold tracking-tight text-foreground">Login</h1>
