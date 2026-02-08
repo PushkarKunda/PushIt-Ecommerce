@@ -2,7 +2,7 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "../../components/ui/button";
 
 
-function AdminProductTile({product}){
+function AdminProductTile({product, setCurrentEditedId, setopenCreateProductsDialog, setFormData, setUploadedImage, handleDelete}){
     return (
         <Card className="w-full max-w-sm mx-auto">
             <div>
@@ -20,8 +20,13 @@ function AdminProductTile({product}){
                         </div>
                     </CardContent>
                     <CardFooter className="flex justify-between items-center">
-                        <Button>Edit</Button>
-                        <Button>Delete</Button>
+                        <Button onClick={() => {
+                            setopenCreateProductsDialog(true)
+                            setCurrentEditedId(product?._id)
+                            setFormData(product)
+                            setUploadedImage(product?.image)
+                        }}>Edit</Button>
+                        <Button onClick={() => handleDelete(product?._id)}>Delete</Button>
                     </CardFooter>
                 </div>
             </div>

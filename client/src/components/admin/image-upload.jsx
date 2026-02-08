@@ -61,9 +61,9 @@ function ProductImageUpload({ imageFile, setImageFile, uploadedImage, setUploade
         <div className="flex flex-col w-full max-w-md mx-auto ">
             <Label className="text-lg font-semibold mb-2 block">Upload Image</Label>
             <div onDragOver={handleDragOver} onDrop={handleDrop} className={`${imageLoading ? "opacity-60" : ""} border-2 border-dashed rounded-lg p-4`}>
-                <Input id="image-upload" className="hidden" type="file" ref={inputRef} onChange={handleImageChange} disabled={imageLoading} />
+                <Input id="image-upload" className="hidden" type="file" ref={inputRef} onChange={handleImageChange} />
                 {
-                    !imageFile ?
+                    !imageFile && !uploadedImage ?
                         <Label htmlFor="image-upload" className={`${imageLoading ? "cursor-not-allowed" : "cursor-pointer"} flex flex-col items-center justify-center h-32`}>
                             <UploadCloudIcon className="w-10 h-10 text-muted-foreground mb-2" />
                             <span>Drag & Drop or click to upload image</span>
@@ -72,9 +72,11 @@ function ProductImageUpload({ imageFile, setImageFile, uploadedImage, setUploade
                                 <div className="h-10 w-full bg-muted animate-pulse rounded-md" /> :
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center">
-                                        <FileIcon className="w-8 h-8 text-primary mr-2" />
+                                        <img src={uploadedImage ? uploadedImage : URL.createObjectURL(imageFile)} className="w-12 h-12 object-cover rounded-md mr-2" />
                                     </div>
-                                    <p className="text-sm font-medium">{imageFile.name}</p>
+                                    <p className="text-sm font-medium">
+                                        {imageFile ? imageFile.name : (uploadedImage ? uploadedImage.split('/').pop() : 'Uploaded Image')}
+                                    </p>
                                     <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground" onClick={handleRemoveImage}>
                                         <XIcon className="w-4 h-4" />
                                         <span className="sr-only">Remove File</span>
