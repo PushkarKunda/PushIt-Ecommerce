@@ -23,6 +23,7 @@ import CheckAuth from './components/common/checkAuth';
 import UnauthPage from "@/pages/unauthPage/index.jsx";
 import { checkAuth } from './store/auth-slice';
 import { Skeleton } from "@/components/ui/skeleton";
+import { Toaster } from "@/components/ui/sonner";
 
 function App() {
   const {user, isAuthenticated, isLoading} = useSelector((state) => state.auth);
@@ -37,7 +38,7 @@ function App() {
   }
 
   return (
-    <div className="header-container">
+    <div className="flex flex-col overflow-hidden bg-white w-max">
       <Routes>
         <Route path="/auth" element={
           <CheckAuth isAuthenticated={isAuthenticated} user={user} >
@@ -70,6 +71,7 @@ function App() {
         <Route path="*" element={<NotFound />}></Route>
         <Route path="/unauth-page" element={<UnauthPage />}></Route>
       </Routes>
+      <Toaster />
     </div>
   )
 }

@@ -1,10 +1,14 @@
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addNewProduct, fetchAllProducts } from "../../store/admin/products-slice";
 import { Button } from "../../components/ui/button";
 import { Sheet, SheetHeader, SheetTitle, SheetContent } from "../../components/ui/sheet";
 import { addProductFormElements } from "../../config";
 import CommonForm from "../../components/common/form";
 import ProductImageUpload from "../../components/admin/image-upload";
+import { toast } from "sonner";
+import AdminProductTile from "./product-tile";
 
 const initialFormData = {
     image: null,
@@ -22,18 +26,48 @@ function AdminProducts() {
     const [formData, setFormData] = useState(initialFormData);
     const [imageFile, setImageFile] = useState(null);
     const [uploadedImage, setUploadedImage] = useState("");
-    function onSubmit() {
-        console.log(formData);
-    }
-    console.log(formData);
+    const [currentEditedId, setCurrentEditedId] = useState(null);
+    
 
+
+
+    const {productList} = useSelector(state => state.adminProducts)
+    const dispatch = useDispatch()
+
+    function onSubmit(event) {
+        event.preventDefault();
+        dispatch(addNewProduct({
+            ...formData,
+            image: uploadedImage
+        })).then((data)=> {
+            console.log(data)
+            if(data?.payload?.success){
+                dispatch(fetchAllProducts())
+                setImageFile(null)
+                setFormData(initialFormData)
+                setopenCreateProductsDialog(false)
+                setImageFile(null);
+                toast("Product Added Successfully")
+            }
+        })
+    }
+    useEffect(() => {
+        dispatch(fetchAllProducts())
+    }, [dispatch])
+
+    console.log(productList);
+    
     return (
         <Fragment>
             <div className="w-full flex justify-end">
                 <Button onClick={() => setopenCreateProductsDialog(true)}>Add New Product</Button>
             </div>
             <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-4">
-
+                {
+                    productList?.map((product) => (
+                        <AdminProductTile key={product?._id} product={product} />
+                    ))
+                }
             </div>
             <Sheet open={openCreateProductsDialog} onOpenChange={() => {
                 setopenCreateProductsDialog(false);
