@@ -1,4 +1,4 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
@@ -10,7 +10,7 @@ const initialState = {
 export const registerUser = createAsyncThunk(
     "auth/register",
     async (formData) => {
-        const response = await axios.post("http://localhost:5000/api/auth/register", formData, {withCredentials: true});
+        const response = await axios.post("http://localhost:5000/api/auth/register", formData, { withCredentials: true });
         return response.data;
     }
 );
@@ -18,7 +18,7 @@ export const registerUser = createAsyncThunk(
 export const loginUser = createAsyncThunk(
     "auth/login",
     async (formData) => {
-        const response = await axios.post("http://localhost:5000/api/auth/login", formData, {withCredentials: true});
+        const response = await axios.post("http://localhost:5000/api/auth/login", formData, { withCredentials: true });
         return response.data;
     }
 );
@@ -26,7 +26,8 @@ export const loginUser = createAsyncThunk(
 export const checkAuth = createAsyncThunk(
     "auth/checkAuth",
     async () => {
-        const response = await axios.get("http://localhost:5000/api/auth/auth-middleware", {withCredentials: true, 
+        const response = await axios.get("http://localhost:5000/api/auth/auth-middleware", {
+            withCredentials: true,
             headers: {
                 'Cache-Control': 'no-cache, no-store, must-revalidate, proxy-revalidate',
                 'Expires': '0'
@@ -79,5 +80,5 @@ const authSlice = createSlice({
     }
 })
 
-export const {setUser} = authSlice.actions;
+export const { setUser } = authSlice.actions;
 export default authSlice.reducer;
