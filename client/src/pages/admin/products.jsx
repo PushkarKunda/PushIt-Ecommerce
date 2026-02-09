@@ -121,7 +121,7 @@ function AdminProducts() {
                         <SheetTitle>{currentEditedId !== null ? "Edit Product" : "Add New Product"}</SheetTitle>
                     </SheetHeader>
                     <ProductImageUpload imageFile={imageFile} setImageFile={setImageFile} uploadedImage={uploadedImage} setUploadedImage={setUploadedImage} isEditMode={currentEditedId !== null} />
-                    <div className="flex flex-col py-6">
+                    <div className="flex flex-col">
                         <CommonForm onSubmit={onSubmit} formData={formData} setFormData={setFormData} buttonText={currentEditedId !== null ? "Update" : "Add"} formControl={addProductFormElements} isBtnDisabled={!isFormValid()}>
 
                         </CommonForm>

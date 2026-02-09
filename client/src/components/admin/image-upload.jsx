@@ -41,7 +41,7 @@ function ProductImageUpload({ imageFile, setImageFile, uploadedImage, setUploade
             const response = await axios.post('http://localhost:5000/api/admin/products/upload-image', data);
             console.log("Upload response:", response);
             if (response?.data?.success) {
-                setUploadedImage(response.data.result);
+                setUploadedImage(response.data.result.url);
                 setImageLoading(false);
             } else {
                 console.error("Upload failed:", response?.data?.message);
