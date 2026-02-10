@@ -6,6 +6,7 @@ const cors = require("cors");
 const authRouter = require("./routes/auth/auth-routes");
 
 const adminProductsRouter = require('./routes/admin/products-routes');
+const shopProductsRouter = require('./routes/shop/shop-items-routes')
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -32,6 +33,7 @@ app.use(express.json());
 // 2. Routes
 app.use("/api/auth", authRouter);
 app.use("/api/admin/products", adminProductsRouter);
+app.use("/api/shop/products", shopProductsRouter)
 
 app.use("/api/shop/items", require("./routes/shop/shop-items-routes"));
 

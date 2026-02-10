@@ -1,8 +1,8 @@
-const Item = require("../../models/Item");
+const Product = require("../../models/Product");
 
 const getItems = async (req, res) => {
   try {
-    const items = await Item.find({});
+    const items = await Product.find({});
     res.status(200).json({
       success: true,
       data: items,
