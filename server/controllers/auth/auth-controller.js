@@ -50,7 +50,7 @@ const loginUser = async(req,res) => {
             return res.json({success: false, message: "Invalid password. Please try again."})
         }
 
-        const token = jwt.sign({id:checkUser._id, role:checkUser.role, email: checkUser.email}, 'CLIENT_SECRET_KEY', {expiresIn:"60m"});
+        const token = jwt.sign({id:checkUser._id, role:checkUser.role, email: checkUser.email, userName: checkUser.userName}, 'CLIENT_SECRET_KEY', {expiresIn:"60m"});
 
         res.cookie("token",token,{
             httpOnly:true,
@@ -61,7 +61,8 @@ const loginUser = async(req,res) => {
             user: {
                 email: checkUser.email,
                 role: checkUser.role,
-                id: checkUser.id
+                id: checkUser.id,
+                userName: checkUser.userName
             }
         })
 
