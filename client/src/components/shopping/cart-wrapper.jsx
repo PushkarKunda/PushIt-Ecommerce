@@ -24,26 +24,27 @@ function UserCartWrapper({ cartItems, setOpenCartSheet }) {
       <SheetHeader>
         <SheetTitle>Your Cart</SheetTitle>
       </SheetHeader>
-      <div className="mt-8 space-y-4 flex-1 overflow-y-auto p-4">
+      <div className="mt-8 space-y-4">
         {cartItems && cartItems.length > 0
           ? cartItems.map((item) => <UserCartItemsContent cartItem={item} />)
           : null}
       </div>
-      <div className="p-4 border-t space-y-4">
+      <div className="mt-8 space-y-4">
         <div className="flex justify-between">
           <span className="font-bold">Total</span>
           <span className="font-bold">${totalCartAmount}</span>
         </div>
-        <Button
-          onClick={() => {
-            navigate("/shop/checkout");
-            setOpenCartSheet(false);
-          }}
-          className="w-full mt-6"
-        >
-          Checkout
-        </Button>
       </div>
+      <Button
+        onClick={() => {
+          navigate("/shop/checkout");
+          setOpenCartSheet(false);
+        }}
+        className="w-full mt-6"
+        disabled={!cartItems || cartItems.length === 0}
+      >
+        Checkout
+      </Button>
     </SheetContent>
   );
 }
