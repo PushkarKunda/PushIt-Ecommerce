@@ -13,8 +13,8 @@ function ShoppingFilter({filters, handleFilterChange }) {
             <div className="p-4 space-y-4">
                 {
                     Object.keys(filterOptions).map((key) => (
-                        <Fragment>
-                        <div key={key}>
+                        <Fragment key={key}>
+                        <div>
                             <h3 className="font-medium mb-2">{key}</h3>
                             <div className="grid gap-2 mt-2">
                                 {

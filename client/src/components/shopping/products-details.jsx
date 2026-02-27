@@ -6,7 +6,7 @@ import { Separator } from "../ui/separator";
 import { Input } from "../ui/input";
 
 
-function ProductDetails({open, setOpen, productDetails}){
+function ProductDetails({open, setOpen, productDetails, handleAddtoCart}){
 console.log(productDetails)
 
     return(
@@ -14,7 +14,7 @@ console.log(productDetails)
             <DialogContent className="grid grid-cols-2 gap-8 sm:p-12 max-w-[90vw] sm:max-w-[80vw] lg:max-w-[70vw] overflow-y-auto">
 
                 <div className="relative overflow-hidden rounded-lg">
-                    <img src={productDetails?.image} alt={productDetails?.name} className="aspect-square w-full h-full object-cover" width={600} height={600} />
+                    <img src={productDetails?.image} alt={productDetails?.title} className="aspect-square w-full h-full object-cover" width={600} height={600} />
                 </div>
                 <div className=" ">
                     <div className="mb-5">
@@ -38,10 +38,16 @@ console.log(productDetails)
                         <span className="text-sm text-muted-foreground">4.5 stars</span>
                     </div>
                     <div className="mt-5">
-                        <Button className="w-full">
-                            Add to Cart
-                        </Button>
-                    </div>  
+                        {
+                            productDetails?.totalStock === 0 ? 
+                            <Button className="w-full opacity-60 cursor-not-allowed">
+                                Out of Stock
+                            </Button> : 
+                            <Button className="w-full" onClick={()=>handleAddtoCart(productDetails?._id)}>
+                                Add to Cart
+                            </Button>
+                        }
+                    </div>
                     <Separator className="mt-5" />
                     <div className="max-h-[300px] overflow-y-auto">
                         <h2 className="text-xl font-bold">Reviews</h2>

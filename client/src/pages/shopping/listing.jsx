@@ -6,10 +6,14 @@ import { sortOptions } from "../../config";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllFilterProducts } from "../../store/shop/products-slice";
-import ShoppingProductTile from "./product-tile";
+import ShoppingProductTile from "../../components/shopping/product-tile";
 import { Skeleton } from "../../components/ui/skeleton";    
 import { useState} from "react";
 import { createSearchParams, useSearchParams } from "react-router-dom";
+import ProductDetails from "../../components/shopping/products-details";
+import { fetchProductDetails } from "../../store/shop/products-slice";
+import { addToCart, fetchCartItems } from "../../store/shop/cart-slice";
+import { toast } from "sonner";
 
 
 
@@ -31,10 +35,12 @@ function createSearchParamsHelper(filterParams) {
 function ShoppingListing() {
 
     const dispatch = useDispatch();
-    const {productList, isLoading} = useSelector((state) => state.shopProducts)
+    const {productList, productDetails} = useSelector((state) => state.shopProducts)
+    const { user } = useSelector((state) => state.auth);
     const [filters, setFilters] = useState({});
     const [sort, setSort] = useState(null);
     const[searchParams, setSearchParams] = useSearchParams()
+    const [open, setOpen] = useState(false);
 
 
     function handleSortChange(value) {
@@ -64,8 +70,16 @@ function ShoppingListing() {
 
     useEffect(() => {
         setSort("price-lowtohigh");
-        setFilters(JSON.parse(sessionStorage.getItem('filters')) || {})
-    }, []);
+        
+        const categoryParam = searchParams.get("category");
+        if (categoryParam) {
+            const categories = categoryParam.split(",");
+            setFilters({ category: categories });
+            sessionStorage.setItem('filters', JSON.stringify({ category: categories }));
+        } else {
+            setFilters(JSON.parse(sessionStorage.getItem('filters')) || {})
+        }
+    }, [searchParams]);
 
     useEffect(() => {
         if(filters !== null && sort !== null){
@@ -80,7 +94,32 @@ function ShoppingListing() {
         }
     }, [filters])
 
-    console.log(filters);
+    function handleGetProductDetails(id){
+        dispatch(fetchProductDetails(id));
+    }
+
+    function handleAddtoCart(getCurrentProductId) {
+        dispatch(
+          addToCart({
+            userId: user?.id,
+            productId: getCurrentProductId,
+            quantity: 1,
+          })
+        ).then((data) => {
+          if (data?.payload?.success) {
+            dispatch(fetchCartItems(user?.id));
+            toast.success("Product is added to cart");
+          }
+        });
+      }
+
+    useEffect(() => {
+        if(productDetails !== null){
+            setOpen(true);
+        }
+    }, [productDetails]);
+
+    console.log(productDetails);
     
 
     return (
@@ -116,7 +155,7 @@ function ShoppingListing() {
                     {
                         productList && productList.length > 0 ?
                         productList.map((product) => (
-                            <ShoppingProductTile key={product._id} product={product} />
+                            <ShoppingProductTile handleAddtoCart={handleAddtoCart} handleGetProductDetails={handleGetProductDetails} key={product._id} product={product} />
                         ))
                         :
                         <p>No products found</p>
@@ -125,6 +164,7 @@ function ShoppingListing() {
 
                 
             </div>
+            <ProductDetails open={open} setOpen={setOpen} productDetails={productDetails} handleAddtoCart={handleAddtoCart} />
         </div>
     )
 }

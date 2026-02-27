@@ -145,7 +145,7 @@ export const shoppingHeaderMenu = [
     }
 ]
 
-export const shoppingViewHeaderMenuList = [
+export const shoppingViewHeaderMenuItems = [
     {
         id: "home",
         label: "Home",
@@ -188,9 +188,7 @@ export const categoryOptionsMap = {
     'beauty': "beauty",
     'fragrances': "fragrances",
     'furniture': "furniture",
-    'groceries': "groceries",
     'home-decoration': "home-decoration",
-    'kitchen-accessories': "kitchen-accessories",
     'laptops': "laptops",
     'mens-shirts': "mens-shirts",
     'mens-shoes': "mens-shoes",
@@ -282,9 +280,7 @@ export const filterOptions = {
     { id: "beauty", label: "beauty" },
     { id: "fragrances", label: "fragrances" },
     { id: "furniture", label: "furniture" },
-    { id: "groceries", label: "groceries" },
     { id: "home-decoration", label: "home-decoration" },
-    { id: "kitchen-accessories", label: "kitchen-accessories" },
     { id: "laptops", label: "laptops" },
     { id: "mens-shirts", label: "mens-shirts" },
     { id: "mens-shoes", label: "mens-shoes" },
@@ -376,4 +372,41 @@ export const sortOptions = [
   { id: "price-hightolow", label: "Price: High to Low" },
   { id: "title-atoz", label: "Title: A to Z" },
   { id: "title-ztoa", label: "Title: Z to A" },
+];
+
+export const addressFormControls = [
+  {
+    label: "Address",
+    name: "address",
+    componentType: "input",
+    type: "text",
+    placeholder: "Enter your address",
+  },
+  {
+    label: "City",
+    name: "city",
+    componentType: "input",
+    type: "text",
+    placeholder: "Enter your city",
+  },
+  {
+    label: "Pincode",
+    name: "pincode",
+    componentType: "input",
+    type: "text",
+    placeholder: "Enter your pincode",
+  },
+  {
+    label: "Phone",
+    name: "phone",
+    componentType: "input",
+    type: "text",
+    placeholder: "Enter your phone number",
+  },
+  {
+    label: "Notes",
+    name: "notes",
+    componentType: "textarea",
+    placeholder: "Enter any additional notes",
+  },
 ];

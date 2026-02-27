@@ -7,6 +7,7 @@ const authRouter = require("./routes/auth/auth-routes");
 
 const adminProductsRouter = require('./routes/admin/products-routes');
 const shopProductsRouter = require('./routes/shop/shop-items-routes')
+const commonFeatureRouter = require('./routes/common/feature-routes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -36,6 +37,7 @@ app.use("/api/admin/products", adminProductsRouter);
 app.use("/api/shop/products", shopProductsRouter)
 
 app.use("/api/shop/items", require("./routes/shop/shop-items-routes"));
+app.use("/api/common/feature", commonFeatureRouter);
 
 // 3. Consolidated Database Connection
 console.log("Attempting to connect to MongoDB...");
