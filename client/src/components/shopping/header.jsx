@@ -36,16 +36,10 @@ function MenuItems() {
         "womens-shoes",
         "womens-watches",
       ],
-      kids: ["kids"],
-      accessories: [
-        "mobile-accessories",
-        "sports-accessories",
-        "sunglasses",
-        "womens-jewellery",
-        "mens-watches",
-        "womens-watches",
-      ],
-      footwear: ["mens-shoes", "womens-shoes"],
+      electronics: ["laptops", "smartphones", "tablets", "mobile-accessories"],
+      beauty: ["beauty", "fragrances", "skin-care", "sunglasses"],
+      furniture: ["furniture", "home-decoration"],
+      sports: ["motorcycle", "sports-accessories", "vehicle"],
     };
 
     if (categoryMapping[getCurrentMenuItem.id]) {

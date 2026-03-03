@@ -10,10 +10,12 @@ import {
   CloudLightning,
   Heater,
   Images,
+  Laptop,
   Shirt,
   ShirtIcon,
   ShoppingBasket,
-  UmbrellaIcon,
+  Smile,
+  Sofa,
   WashingMachine,
   WatchIcon,
 } from "lucide-react";
@@ -35,9 +37,9 @@ import { getFeatureImages } from "@/store/common-slice";
 const categoriesWithIcon = [
   { id: "men", label: "Men", icon: ShirtIcon },
   { id: "women", label: "Women", icon: CloudLightning },
-  { id: "kids", label: "Kids", icon: BabyIcon },
-  { id: "accessories", label: "Accessories", icon: WatchIcon },
-  { id: "footwear", label: "Footwear", icon: UmbrellaIcon },
+  { id: "electronics", label: "Electronics", icon: Laptop },
+  { id: "beauty", label: "Beauty", icon: Smile },
+  { id: "furniture", label: "Furniture", icon: Sofa },
 ];
 
 const brandsWithIcon = [
@@ -86,16 +88,10 @@ function ShoppingHome() {
           "womens-shoes",
           "womens-watches",
         ],
-        kids: ["kids"],
-        accessories: [
-          "mobile-accessories",
-          "sports-accessories",
-          "sunglasses",
-          "womens-jewellery",
-          "mens-watches",
-          "womens-watches",
-        ],
-        footwear: ["mens-shoes", "womens-shoes"],
+        electronics: ["laptops", "smartphones", "tablets", "mobile-accessories"],
+        beauty: ["beauty", "fragrances", "skin-care", "sunglasses"],
+        furniture: ["furniture", "home-decoration"],
+        sports: ["motorcycle", "sports-accessories", "vehicle"],
       };
 
       if (categoryMapping[getCurrentItem.id]) {

@@ -81,11 +81,28 @@ export const addProductFormElements = [
         name: "category",
         componentType: "select",
         options: [
-            { id: "men", label: "Men" },
-            { id: "women", label: "Women" },
-            { id: "kids", label: "Kids" },
-            { id: "accessories", label: "Accessories" },
-            { id: "footwear", label: "Footwear" },
+            { id: "beauty", label: "Beauty" },
+            { id: "fragrances", label: "Fragrances" },
+            { id: "furniture", label: "Furniture" },
+            { id: "home-decoration", label: "Home Decoration" },
+            { id: "laptops", label: "Laptops" },
+            { id: "mens-shirts", label: "Men's Shirts" },
+            { id: "mens-shoes", label: "Men's Shoes" },
+            { id: "mens-watches", label: "Men's Watches" },
+            { id: "mobile-accessories", label: "Mobile Accessories" },
+            { id: "motorcycle", label: "Motorcycle" },
+            { id: "skin-care", label: "Skin Care" },
+            { id: "smartphones", label: "Smartphones" },
+            { id: "sports-accessories", label: "Sports Accessories" },
+            { id: "sunglasses", label: "Sunglasses" },
+            { id: "tablets", label: "Tablets" },
+            { id: "tops", label: "Tops" },
+            { id: "vehicle", label: "Vehicle" },
+            { id: "womens-bags", label: "Women's Bags" },
+            { id: "womens-dresses", label: "Women's Dresses" },
+            { id: "womens-jewellery", label: "Women's Jewellery" },
+            { id: "womens-shoes", label: "Women's Shoes" },
+            { id: "womens-watches", label: "Women's Watches" }
         ],
     },
     {
@@ -150,37 +167,36 @@ export const shoppingViewHeaderMenuItems = [
         id: "home",
         label: "Home",
         path: "/shop/home",
-        
     },
     {
-        id:"men",
+        id: "men",
         label: "Men",
         path: "/shop/listing",
-       
     },
     {
-        id:"women",
+        id: "women",
         label: "Women",
         path: "/shop/listing",
-        
     },
     {
-        id:"kids",
-        label: "Kids",
+        id: "electronics",
+        label: "Electronics",
         path: "/shop/listing",
-        
     },
     {
-        id:"accessories",
-        label: "Accessories",
+        id: "beauty",
+        label: "Beauty",
         path: "/shop/listing",
-       
     },
     {
-        id:"footwear",
-        label: "Footwear",
+        id: "furniture",
+        label: "Furniture",
         path: "/shop/listing",
-        
+    },
+    {
+        id: "sports",
+        label: "Sports & Auto",
+        path: "/shop/listing",
     }
 ]
 
